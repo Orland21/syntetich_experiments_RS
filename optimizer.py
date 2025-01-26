@@ -23,6 +23,7 @@ def parse_arg():
     parser.add_argument('--project', type=str, default=None,  
                         help='-- set name of project')
     parser.add_argument('--debug', action='store_true', help='Concepts supervision')
+    parser.add_argument('--trials', action='store_true', help='Numbers of trials')
 
     args = parser.parse_args()
 
@@ -133,7 +134,7 @@ if __name__ == '__main__':
 
     # **Ottimizzazione con Optuna**
     study = optuna.create_study(direction='minimize')  # Minimizza la validation loss
-    study.optimize(lambda trial: objective(trial,args), n_trials=5)  # Testa 20 combinazioni
+    study.optimize(lambda trial: objective(trial,args), n_trials=args.trials) 
 
     # Migliori iperparametri
     with open("best_parameters_"+args.dataset+"_summary.txt", "a") as f:
