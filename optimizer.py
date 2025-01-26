@@ -23,7 +23,7 @@ def parse_arg():
     parser.add_argument('--project', type=str, default=None,  
                         help='-- set name of project')
     parser.add_argument('--debug', action='store_true', help='Concepts supervision')
-    parser.add_argument('--trials', action='store_true', help='Numbers of trials')
+    parser.add_argument('--trials', type='int', default=100, help='Numbers of trials')
 
     args = parser.parse_args()
 
